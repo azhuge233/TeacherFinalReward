@@ -1,0 +1,55 @@
+﻿@model IQueryable<TeacherReward.Models.Users>
+@{
+    ViewBag.Title = "评选扣分";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>评选扣分</h2>
+<table class="table" style="text-align:center">
+	<tr>
+		<th style="text-align:center">编号</th>
+		<th style="text-align:center">姓名</th>
+		<th style="text-align:center">教学督导扣分</th>
+		<th style="text-align:center">备注</th>
+		<th style="text-align:center">教学事故扣分</th>
+		<th style="text-align:center">备注</th>
+		<th style="text-align:center">扣分</th>
+	</tr>
+	@foreach (var each in Model) {
+		if (ViewBag.DeducDic.ContainsKey(each.ID)) {
+			<tr>
+				<td>@each.ID</td>
+				<td>@each.Name</td>
+				<td>@ViewBag.DeducDic[each.ID][0]</td>
+				<td>@ViewBag.DeducDic[each.ID][1]</td>
+				<td>@ViewBag.DeducDic[each.ID][2]</td>
+				<td>@ViewBag.DeducDic[each.ID][3]</td>
+				<td>
+					@using (Html.BeginForm("DoDeduction", "Admin", FormMethod.Get)) {
+						<input type="hidden" name="ID" value="@each.ID" />
+						<input type="submit" class="btn btn-warning btn-sm" value="重新填写" />
+					}
+					@using (Html.BeginForm("UnDoDeduction", "Admin", FormMethod.Post)) {
+						<input type="hidden" name="ID" value="@each.ID" />
+						<input type="submit" class="btn btn-primary btn-sm" value="取消扣分" />
+					}
+				</td>
+			</tr>
+		} else {
+			<tr>
+				<td>@each.ID</td>
+				<td>@each.Name</td>
+				<td>无</td>
+				<td>无</td>
+				<td>无</td>
+				<td>无</td>
+				<td>
+					@using (Html.BeginForm("DoDeduction", "Admin", FormMethod.Get)) {
+						<input type="hidden" name="ID" value="@each.ID" />
+						<input type="submit" class="btn btn-danger btn-sm" value="填写信息" />
+					}
+				</td>
+			</tr>
+		}
+	}
+</table>

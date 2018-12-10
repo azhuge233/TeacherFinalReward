@@ -1,0 +1,77 @@
+﻿@model TeacherReward.Models.TeacherInfo
+@{
+	ViewBag.Title = "教师评分";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>教师评分</h2>
+
+<h4 style="text-align:center;">教师信息</h4>
+<table class="table" style="margin:auto">
+	<tr align="center">
+		<td>ID：@Model.ID</td>
+		<td>姓名：@Model.Name</td>
+		<td>系别：@ViewBag.Department[Model.Depart]</td>
+	</tr>
+</table>
+@using (Html.BeginForm("UpdateInfo", "Admin", FormMethod.Post)) {
+	<table class="table">
+		<tr>
+			<td>
+				<label style="vertical-align:middle;font-size:large">师德建设</label>
+				<div>
+					@Html.DropDownList("ShiDe", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label style="vertical-align:middle;font-size:large">各类评价</label>
+				<div>
+					<label style="vertical-align:middle;">领导评价：</label>
+					@Html.DropDownList("BossScore", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="vertical-align:middle;">督导评价：</label>
+					@Html.DropDownList("SuperScore", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="vertical-align:middle;">学生评价：</label>
+					@Html.DropDownList("StuScore", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<label style="vertical-align:middle;">学生出勤：</label>
+					@Html.DropDownList("DutyTime", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label style="vertical-align:middle;font-size:large">出勤情况</label>
+				<div>
+					<label style="vertical-align:middle">迟到、提前下课两次（含以上）</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@Html.RadioButton("beLate", 0, true) 无
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@Html.RadioButton("beLate", 1) 有
+				</div>
+				<div>
+					<label style="vertical-align:middle">无故缺席两次（含以上）集体活动</label>
+					&nbsp;
+					@Html.RadioButton("didnotShowup", 0, true) 无
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@Html.RadioButton("didnotShowup", 1) 有
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label style="vertical-align:middle;font-size:large">系部工作</label>
+				<div>
+					@Html.DropDownList("DepartWork", ViewBag.PerformList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div style="vertical-align:central;text-align:center">
+		<input type="hidden" name="ID" value="@Model.ID" />
+		<input type="submit" value="确认提交" class="btn btn-primary" />
+	</div>
+}

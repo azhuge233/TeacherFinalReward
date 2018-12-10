@@ -1,0 +1,31 @@
+﻿
+@{
+	ViewBag.Title = "计算总分";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>计算总分</h2>
+
+@if (ViewBag.ReadyStatus == 0) {
+	<label style="font-size:large;text-align:center;color:red">没有教师信息</label>
+} else if (ViewBag.ReadyStatus == 1) {
+	<label style="font-size:large;text-align:center;color:red">部分教师评分未完成</label>
+} else if (ViewBag.ReadyStatus == 2) {
+	<label style="font-size:large;text-align:center;color:red">系内部分教师未填写信息</label>
+} else if (ViewBag.ReadyStatus == 3) {
+	<label style="font-size:large;text-align:center;">您已完成分数计算</label>
+} else {
+	<h3 style="text-align:center;color:red">注意</h3>
+	<li style="text-align:center;color:red">此操作不可撤销</li>
+	<li style="text-align:center;color:red">被否决的教师不会计算总分</li>
+	<li style="text-align:center;color:red">操作完毕后教师不能再次修改信息</li>
+	<li style="text-align:center;">操作完毕后在 [信息公示] 处进行评审</li>
+
+	<br />
+	using (Html.BeginForm("CalFinalScore", "Admin", FormMethod.Get)) {
+		<div style="vertical-align:central;text-align:center">
+			<input type="hidden" name="Affirm" value="1" />
+			<input id="CalFinalScoreBtn" type="submit" value="确认计算总分" class="btn btn-primary" />
+		</div>
+	}
+}

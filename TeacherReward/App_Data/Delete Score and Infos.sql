@@ -1,0 +1,11 @@
+﻿delete from TeacherCrosswiseTaskInfo Where 1=1
+delete from TeacherInfo Where 1=1
+delete from TeacherPrizeInfo Where 1=1
+delete from TeacherProjectInfo Where 1=1
+delete from TeacherPublishThesisInfo Where 1=1
+delete from TeacherScore Where 1=1
+delete from TeacherTaskInfo Where 1=1
+delete from TeacherTeachThesisInfo Where 1=1
+delete from TeachingAwardInfo Where 1=1
+delete from Deduction Where 1=1
+delete from Veto Where 1=1

@@ -1,0 +1,66 @@
+﻿@model TeacherReward.Models.Users
+@{
+	ViewBag.Title = "教师评分评审系统";
+	Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+
+<div id="login-div">
+    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post)) {
+        <div class="control-group">
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <h3 style="font-weight:bold">登录</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ID)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ID, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr style="height:7px;"></tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.ID)
+                    </td>
+                </tr>
+                <tr style="height:7px;"></tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Password, new { @type = "password", @class = "form-control" })
+                    </td>
+                </tr>
+                <tr style="height:7px;"></tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.ErrMsg)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="name" value="登录" class="btn btn-primary" />
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="reset" name="name" value="清除" class="btn btn-danger" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>
+

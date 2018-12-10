@@ -1,0 +1,94 @@
+﻿@model IQueryable<TeacherReward.Models.TeacherScore>
+@{
+	ViewBag.Title = "信息公示";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>信息公示</h2>
+
+@using (Html.BeginForm("ShowAll", "Admin", FormMethod.Get)) {
+	<table class="table table-hover">
+		<tr>
+			<td style="vertical-align:middle;">按编号查找:</td>
+			<td>
+				@Html.TextBox("ID", null, new { @class = "form-control", @style = "width:120px;" })
+			</td>
+			<td style="vertical-align:middle;">按姓名查找:</td>
+			<td>
+				@Html.TextBox("Name", null, new { @class = "form-control", @style = "width:120px;" })
+			</td>
+
+			<td style="vertical-align:middle;">按系别查找:</td>
+			<td class="dropdown dropdown-menu-right">
+				@Html.DropDownList("SearchByDepart", ViewBag.SearchByDepart as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+			</td>
+			<td style="vertical-align:middle;">按分数排序:</td>
+			<td class="dropdown dropdown-menu-right">
+				@Html.DropDownList("sortBy", ViewBag.sortBy as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+			</td>
+			<td style="vertical-align:middle;font-size:small;">
+				@Html.CheckBox("ShowCheck", new { @style = "vertical-align:middle;" })已审核
+			</td>
+			<td><input type="submit" value="确定" class="btn btn-primary" /></td>
+		</tr>
+	</table>
+}
+
+<table class="table table-striped table-hover">
+	<tr>
+		<th>编号</th>
+		<th>姓名</th>
+		<th>系别</th>
+		<th>详细信息</th>
+		<th>KPI分数</th>
+		<th>CPI分数</th>
+		<th>总分</th>
+		<th>审核情况</th>
+		@if (ViewBag.ReadytoJudge == true) {
+			<th>评审</th>
+		}
+	</tr>
+	@foreach (TeacherReward.Models.TeacherScore tScore in Model) {
+		if (tScore.isSelected == true) {
+	<tr class="success">
+		<td>@tScore.ID</td>
+		<td>@tScore.Name</td>
+		<td>@ViewBag.Department[tScore.Depart]</td>
+		<td>@Html.ActionLink("查看详情", "ShowDetail", new { ID = tScore.ID }, new { @target = "_blank" })</td>
+		<td>@tScore.KPIScore</td>
+		<td>@tScore.CPIScore</td>
+		<td>@tScore.FinalScore</td>
+		<td>已审核</td>
+		@if (ViewBag.ReadytoJudge == true) {
+		<td>
+			@using (Html.BeginForm("Select", "Admin", FormMethod.Post)) {
+				<input type="hidden" name="ID" value="@tScore.ID" />
+				<input type="hidden" name="isSelect" value="0" />
+				<input type="submit" name="name" value="取消审核" class="btn btn-danger btn-sm" />
+			}
+		</td>
+		}
+	</tr>
+		} else {
+	<tr>
+		<td>@tScore.ID</td>
+		<td>@tScore.Name</td>
+		<td>@ViewBag.Department[tScore.Depart]</td>
+		<td>@Html.ActionLink("查看详情", "ShowDetail", new { ID = tScore.ID }, new { @target = "_blank" })</td>
+		<td>@tScore.KPIScore</td>
+		<td>@tScore.CPIScore</td>
+		<td>@tScore.FinalScore</td>
+		<td>待审核</td>
+		@if (ViewBag.ReadytoJudge == true) {
+		<td>
+			@using (Html.BeginForm("Select", "Admin", FormMethod.Post)) {
+				<input type="hidden" name="ID" value="@tScore.ID" />
+				<input type="hidden" name="isSelect" value="1" />
+				<input type="submit" name="name" value="确认审核" class="btn btn-primary btn-sm" />
+			}
+		</td>
+		}
+	</tr>
+		}
+	}
+</table>

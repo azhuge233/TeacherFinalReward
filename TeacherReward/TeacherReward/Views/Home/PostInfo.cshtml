@@ -1,0 +1,557 @@
+﻿@model TeacherReward.Models.AllInfo
+@{
+	ViewBag.Title = "提交信息";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>提交信息</h2>
+@if (ViewBag.AlreadyCaled == true) {
+	<label style="font-size:large;text-align:center;color:red">总分已计算完毕，停止修改信息</label>
+} else {
+	<h3>本人信息</h3>
+	<table class="table" style="margin:auto">
+		<tr align="center">
+			<td>ID：@ViewBag.curUserID</td>
+			<td>姓名：@ViewBag.curUserName</td>
+			<td>系别：@ViewBag.UserDepart</td>
+		</tr>
+	</table>
+	<h3>填写信息</h3>
+	using (Html.BeginForm("Submit", "Home", FormMethod.Post)) {
+		<table class="table" style="margin:auto;width:auto">
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">课时量</label>
+					<div>
+						<label style="font-size:small;color:brown">完成420，可以得37分，每超1学时的分数=3/全系教师中超工作量最大值</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@Html.TextBoxFor(model => model.TInfo.baseTeachingTime, null, new { @class = "form-control", @style = "width=120px" })
+					@Html.ValidationMessageFor(model => model.TInfo.baseTeachingTime)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">指导竞赛</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							省市地区三等奖为2单位，二等奖为3单位，一等奖为4单位。
+							国家级三等奖为3单位，二等奖为4单位，一等奖为5单位。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">奖项</th>
+							<th style="text-align:center">级别</th>
+							<th style="text-align:center">名次</th>
+							<th style="text-align:center">备注</th>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">奖项一：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PrizeLevel1", ViewBag.PrizeLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="120" style="text-align:center">
+								@Html.DropDownList("Prize1", ViewBag.PrizeList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPrize.Prize1Name, new { Value="", @class = "form-control", @placeholder = "获奖名称" })
+								@Html.ValidationMessageFor(Model => Model.TPrize.Prize1Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">奖项二：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PrizeLevel2", ViewBag.PrizeLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="120" style="text-align:center">
+								@Html.DropDownList("Prize2", ViewBag.PrizeList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPrize.Prize2Name, new { Value = "", @class = "form-control", @placeholder = "获奖名称" })
+								@Html.ValidationMessageFor(Model => Model.TPrize.Prize2Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">奖项三：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PrizeLevel3", ViewBag.PrizeLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="120" style="text-align:center">
+								@Html.DropDownList("Prize3", ViewBag.PrizeList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPrize.Prize3Name, new { Value = "", @class = "form-control", @placeholder = "获奖名称" })
+								@Html.ValidationMessageFor(Model => Model.TPrize.Prize3Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">奖项四：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PrizeLevel4", ViewBag.PrizeLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="120" style="text-align:center">
+								@Html.DropDownList("Prize4", ViewBag.PrizeList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPrize.Prize4Name, new { Value = "", @class = "form-control", @placeholder = "获奖名称" })
+								@Html.ValidationMessageFor(Model => Model.TPrize.Prize4Name)
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						教育项目
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							项目负责人3单位、第一参与人2单位、1、0.5、0.5、……。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">项目</th>
+							<th style="text-align:center">名称</th>
+							<th style="text-align:center">级别</th>
+							<th style="text-align:center">开始时间</th>
+							<th style="text-align:center">结束时间</th>
+							<th style="text-align:center">参与人</th>
+						</tr>
+						<tr>
+							<td style="text-align:center">项目一：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1Name, new { Value = "", @class = "form-control", @placeholder = "项目名称" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project1Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project1Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project1StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1EndTime, new { Value = "", @class = "form-control", @placeholder = "结束时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project1EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project1", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">项目二：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1Name, new { Value = "", @class = "form-control", @placeholder = "项目名称" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project2Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project2Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project2StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project2StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project2EndTime, new { Value = "", @class = "form-control", @placeholder = "结束时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project2EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project2", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">项目三：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1Name, new { Value = "", @class = "form-control", @placeholder = "项目名称" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project3Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project3Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project3StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project3StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Projectk3EndTime, new { Value = "", @class = "form-control", @placeholder = "结束时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Projectk3EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project3", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">项目四：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project1Name, new { Value = "", @class = "form-control", @placeholder = "项目名称" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project4Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project4Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project4StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project4StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TProject.Project4EndTime, new { Value = "", @class = "form-control", @placeholder = "结束时间" })
+								@Html.ValidationMessageFor(Model => Model.TProject.Project4EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Project4", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						教学论文/教材
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							教学论文不区分重点、一般、会议论文等。一本教材等同于两篇论文。
+							发表1篇论文即为合格，得1分。
+							第一作者3单位、第二作者2单位、第三作者及以后1单位。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">教学论文</th>
+							<th style="text-align:center">类型</th>
+							<th style="text-align:center">作者</th>
+							<th style="text-align:center">备注</th>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">
+								论文/教材一：
+							</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("TeachThesis1Type", ViewBag.ThesisorMaterialList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("TeachThesis1", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTThesis.TeachThesis1Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TTThesis.TeachThesis1Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">
+								论文/教材二：
+							</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("TeachThesis2Type", ViewBag.ThesisorMaterialList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("TeachThesis2", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTThesis.TeachThesis2Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TTThesis.TeachThesis2Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">
+								论文/教材三：
+							</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("TeachThesis3Type", ViewBag.ThesisorMaterialList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("TeachThesis3", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTThesis.TeachThesis3Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TTThesis.TeachThesis3Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">
+								论文/教材四：
+							</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("TeachThesis4Type", ViewBag.ThesisorMaterialList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("TeachThesis4", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTThesis.TeachThesis4Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TTThesis.TeachThesis4Name)
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						教学成果
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">只要有获奖就得1分(非1单位)</label><br />
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@Html.RadioButton("TeachingAward", 0, true) 无
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					@Html.RadioButton("TeachingAward", 1) 有
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						发表论文
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							SCI/EI 3单位/篇（第一作者3单位、第二作者2单位、第三作者及以后1单位）；
+							发明专利、软件著作权等同，实用新型专利*0.5系数。
+							核心/重点刊物 2单位/篇（第一作者2单位、第二作者1单位、第三作者及以后0.5单位）。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">论文</th>
+							<th style="text-align:center">类型</th>
+							<th style="text-align:center">作者</th>
+							<th style="text-align:center">备注</th>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">论文一：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PThesisLevel1", ViewBag.PublishThesisLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("PThesis1", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPThesis.PublishThesis1Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TPThesis.PublishThesis1Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">论文二：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PThesisLevel2", ViewBag.PublishThesisLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+													</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("PThesis2", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPThesis.PublishThesis2Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TPThesis.PublishThesis2Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">论文三：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PThesisLevel3", ViewBag.PublishThesisLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("PThesis3", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPThesis.PublishThesis3Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TPThesis.PublishThesis3Name)
+							</td>
+						</tr>
+						<tr>
+							<td width="80" style="text-align:center">论文四：</td>
+							<td width="100" style="text-align:center">
+								@Html.DropDownList("PThesisLevel4", ViewBag.PublishThesisLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })</td>
+							<td width="150" style="text-align:center">
+								@Html.DropDownList("PThesis4", ViewBag.ThesisAuthorList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td width="180" style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TPThesis.PublishThesis4Name, new { Value = "", @class = "form-control", @placeholder = "论文名称" })
+								@Html.ValidationMessageFor(Model => Model.TPThesis.PublishThesis4Name)
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						纵向课题
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							国家级、省（市）部纵向项目主持人3分、第一参与人2分、第二参与人1分、第三参与人及以后0.5分。
+							局级（市教委）同上。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">课题</th>
+							<th style="text-align:center">名称</th>
+							<th style="text-align:center">级别</th>
+							<th style="text-align:center">开始时间</th>
+							<th style="text-align:center">结束时间</th>
+							<th style="text-align:center">参与人</th>
+						</tr>
+						<tr>
+							<td style="text-align:center">课题一：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task1Name, new { Value = "", @class = "form-control", @placeholder = "课题名称" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task1Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task1Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task1StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task1StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task1EndTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task1EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task1", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">课题二：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task2Name, new { Value = "", @class = "form-control", @placeholder = "课题名称" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task2Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task2Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task2StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task2StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task2EndTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task2EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task2", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">课题三：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task3Name, new { Value = "", @class = "form-control", @placeholder = "课题名称" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task3Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task3Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task3StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task3StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task3EndTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task3EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task3", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:center">课题四：</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task4Name, new { Value = "", @class = "form-control", @placeholder = "课题名称" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task4Name)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task4Level", ViewBag.ProjectLevelList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task4StartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task4StartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TTask.Task4EndTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TTask.Task4EndTime)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("Task4", ViewBag.ParticipateList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label style="vertical-align:middle;font-size:large">
+						横向课题
+					</label>
+					<div>
+						<label style="font-size:small;color:brown">
+							1、理工类横向课题：≥20万 2分、≥10万 1分、< 10万 0.5分。
+							2、人文社科、艺术、管理类横向课题：≥2万 2分、≥1万 1分、< 1万 0.5分。
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="table table-condensed">
+						<tr>
+							<th style="text-align:center">名称</th>
+							<th style="text-align:center">级别</th>
+							<th style="text-align:center">开始时间</th>
+							<th style="text-align:center">结束时间</th>
+						</tr>
+						<tr>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TCTask.CTaskName, new { Value = "", @class = "form-control", @placeholder = "课题名称" })
+								@Html.ValidationMessageFor(Model => Model.TCTask.CTaskName)
+							</td>
+							<td style="text-align:center">
+								@Html.DropDownList("CTask", ViewBag.CrosswiseTaskList as SelectList, new { @class = "btn btn-default dropdown-toggle" })
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TCTask.CTaskStartTime, new { Value = "", @class = "form-control", @placeholder = "开始时间" })
+								@Html.ValidationMessageFor(Model => Model.TCTask.CTaskStartTime)
+							</td>
+							<td style="text-align:center">
+								@Html.TextBoxFor(Model => Model.TCTask.CTaskEndTime, new { Value = "", @class = "form-control", @placeholder = "结束时间" })
+								@Html.ValidationMessageFor(Model => Model.TCTask.CTaskEndTime)
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div style="vertical-align:central;text-align:center">
+			<input type="submit" value="确认提交" class="btn btn-primary" />
+		</div>
+	}
+}
+

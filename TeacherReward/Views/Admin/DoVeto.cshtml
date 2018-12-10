@@ -1,0 +1,36 @@
+﻿@model TeacherReward.Models.VetoViewModel
+@{
+	ViewBag.Title = "否决";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>否决教师</h2>
+<h3 style="text-align:center">教师信息</h3>
+<table class="table table-condensed" style="text-align:center">
+	<tr>
+		<th style="text-align:center">编号</th>
+		<th style="text-align:center">姓名</th>
+	</tr>
+	<tr>
+		<td>@Model.user.ID</td>
+		<td>@Model.user.Name</td>
+	</tr>
+</table>
+<h3 style="text-align:center">信息填写</h3>
+@using (Html.BeginForm("DoVeto", "Admin", FormMethod.Post)) {
+	<table style="text-align:center; width:400px; margin:auto" class="table">
+		<tr>
+			<td style="text-align:center">
+				<div style="text-align:center">
+					@Html.TextAreaFor(Model => Model.veto.Comment, new { @class = "form-control", @rows = "2", @placeholder = "否决原因" })
+					@Html.ValidationMessageFor(Model => Model.veto.Comment)
+				</div>
+			</td>
+			<td>
+				<input type="hidden" name="ID" value="@Model.user.ID" />
+				<input type="submit" value="确认提交" class="btn btn-primary" />
+			</td>
+		</tr>
+	</table>
+}
+

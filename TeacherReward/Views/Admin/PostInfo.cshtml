@@ -1,0 +1,88 @@
+﻿@model IQueryable<TeacherReward.Models.TeacherInfo>
+@{
+	ViewBag.Title = "填写教师信息";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>填写教师信息</h2>
+
+@if (ViewBag.NoInfos == true) {
+	<label style="font-size:large;text-align:center;color:red">没有教师提交信息</label>
+} else {
+
+using (Html.BeginForm("PostInfo", "Admin", FormMethod.Get)) {
+	<table class="table table-hover">
+		<tr>
+			<td style="vertical-align:middle;">按编号查找:</td>
+			<td>
+				@Html.TextBox("ID", null, new { @class = "form-control", @style = "width:200px;" })
+			</td>
+			<td style="vertical-align:middle;">按姓名查找:</td>
+			<td>
+				@Html.TextBox("Name", null, new { @class = "form-control", @style = "width:200px;" })
+			</td>
+			<td style="vertical-align:middle;font-size:small;">
+				@Html.CheckBox("isNotReady", new { @style = "vertical-align:middle;" }) 仅显示未填写教师
+			</td>
+			<td><input type="submit" value="确定" class="btn btn-primary" /></td>
+		</tr>
+	</table>
+}
+
+<table class="table table-striped table-hover">
+	<tr>
+		<th>编号</th>
+		<th>姓名</th>
+		<th>系别</th>
+		<th>师德建设</th>
+		<th>领导评分</th>
+		<th>督导评分</th>
+		<th>学生评分</th>
+		<th>学生出勤</th>
+		<th>出勤情况</th>
+		<th>系部工作</th>
+		<th>填写评分</th>
+	</tr>
+	@foreach (TeacherReward.Models.TeacherInfo tInfo in Model) {
+		if (tInfo.DutyTime == 0) {
+	<tr>
+		<td>@tInfo.ID</td>
+		<td>@tInfo.Name</td>
+		<td>@ViewBag.Department[tInfo.Depart]</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		<td>无信息</td>
+		@using (Html.BeginForm("UpdateInfo", "Admin", FormMethod.Post)) {
+			<td>
+				<input type="hidden" name="ID" value="@tInfo.ID" />
+				<input type="submit" name="name" value="填写信息" class="btn btn-primary btn-sm" />
+			</td>
+		}
+	</tr>
+		} else {
+	<tr class="success">
+		<td>@tInfo.ID</td>
+		<td>@tInfo.Name</td>
+		<td>@ViewBag.Department[tInfo.Depart]</td>
+		<td>@tInfo.ShiDe 分</td>
+		<td>@tInfo.BossScore 分</td>
+		<td>@tInfo.SuperScore 分</td>
+		<td>@tInfo.StuScore 分</td>
+		<td>@tInfo.DutyTime 分</td>
+		<td>@tInfo.Showup 分</td>
+		<td>@tInfo.DepartWorks 分</td>
+		@using (Html.BeginForm("UpdateInfo", "Admin", FormMethod.Post)) {
+			<td>
+				<input type="hidden" name="ID" value="@tInfo.ID" />
+				<input type="submit" name="name" value="重新填写" class="btn btn-danger btn-sm"  />
+			</td>
+		}
+	</tr>
+		}
+	}
+</table>
+}

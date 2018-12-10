@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd0bed67d2c34415974c3eb1e860aec5" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="TeacherRewardModel.Department" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherCrosswiseTaskInfo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherInfo" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherPrizeInfo" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherProjectInfo" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherPublishThesisInfo" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherScore" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherTaskInfo" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.TeacherTeachThesisInfo" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeacherRewardModel.Users" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="TeacherRewardModel.FK_TeacherInfo_TeacherInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="TeacherRewardModel.FK_TeacherScore_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="TeacherRewardModel.FK_Users_Department" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "账号信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>账号信息</h2>
+
+<div class="table-responsive">
+    <table class="table text-justify" style="width:300px;text-align:left;margin:auto;">
+        <tr>
+            <td>教师编号：</td>
+            @{
+                string UserID = ViewBag.curUserID;
+                <td>@Html.Label(UserID)</td>
+            }
+        </tr>
+        <tr>
+            <td>姓名：</td>
+            @{
+                string Name = ViewBag.curUserName;
+                <td>@Html.Label(Name)</td>
+            }
+        </tr>
+        <tr>
+            <td>系别：</td>
+            @{
+                string Depart = ViewBag.userDepart;
+                <td>@Html.Label(Depart)</td>
+            }
+        </tr>
+        <tr>
+            <td>角色：</td>
+            @{
+                string isAdmin = ViewBag.isAdmin;
+                <td>@Html.Label(isAdmin)</td>
+            }
+        </tr>
+    </table>
+</div>
+

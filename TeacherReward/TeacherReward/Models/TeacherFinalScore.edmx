@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeacherRewardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherCrosswiseTaskInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CTaskName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CTaskLevel" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CTaskStartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CTaskEndTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Depart" Type="int" Nullable="false" />
+          <Property Name="ShiDe" Type="int" Nullable="false" />
+          <Property Name="baseTeachingTime" Type="int" Nullable="false" />
+          <Property Name="extTeachingTime" Type="int" Nullable="false" />
+          <Property Name="BossScore" Type="int" Nullable="false" />
+          <Property Name="SuperScore" Type="int" Nullable="false" />
+          <Property Name="StuScore" Type="int" Nullable="false" />
+          <Property Name="DutyTime" Type="int" Nullable="false" />
+          <Property Name="Prize" Type="int" Nullable="false" />
+          <Property Name="baseProject" Type="float" Nullable="false" />
+          <Property Name="extProject" Type="float" Nullable="false" />
+          <Property Name="baseTeachThesis" Type="int" Nullable="false" />
+          <Property Name="extTeachThesis" Type="int" Nullable="false" />
+          <Property Name="TeachingAward" Type="int" Nullable="false" />
+          <Property Name="basePublishThesis" Type="float" Nullable="false" />
+          <Property Name="extPublishThesis" Type="float" Nullable="false" />
+          <Property Name="baseTask" Type="float" Nullable="false" />
+          <Property Name="extTask" Type="float" Nullable="false" />
+          <Property Name="CrosswiseTask" Type="float" Nullable="false" />
+          <Property Name="Showup" Type="int" Nullable="false" />
+          <Property Name="DepartWorks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherPrizeInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Prize1Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prize1Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize1Rank" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize2Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prize2Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize2Rank" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize3Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prize3Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize3Rank" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize4Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prize4Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prize4Rank" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherProjectInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Project1Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Project1Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Project1StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project1EndTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project1Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Project2Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Project2Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Project2StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project2EndTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project2Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Project3Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Project3Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Project3StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Projectk3EndTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project3Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Project4Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Project4Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Project4StartTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project4EndTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Project4Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherPublishThesisInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PublishThesis1Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PublishThesis1Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PublishThesis1Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PublishThesis2Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PublishThesis2Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PublishThesis2Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PublishThesis3Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PublishThesis3Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PublishThesis3Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PublishThesis4Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PublishThesis4Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PublishThesis4Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherScore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Depart" Type="int" Nullable="false" />
+          <Property Name="KPIScore" Type="float" Nullable="false" />
+          <Property Name="CPIScore" Type="float" Nullable="false" />
+          <Property Name="FinalScore" Type="float" Nullable="false" />
+          <Property Name="isSelected" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherTaskInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Task1Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Task1StartTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task1EndTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task1Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Task1Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Task2Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Task2StartTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task2EndTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task2Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Task2Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Task3Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Task3StartTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task3EndTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task3Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Task3Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Task4Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Task4StartTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task4EndTime" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Task4Level" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Task4Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherTeachThesisInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="TeachThesis1Type" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="TeachThesis1Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TeachThesis1Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="TeachThesis2Type" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="TeachThesis2Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TeachThesis2Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="TeachThesis3Type" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="TeachThesis3Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TeachThesis3Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="TeachThesis4Type" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="TeachThesis4Author" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TeachThesis4Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TeacherInfo_TeacherInfo">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="TeacherInfo" Type="Self.TeacherInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherInfo">
+              <PropertyRef Name="Depart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherScore_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="TeacherScore" Type="Self.TeacherScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherScore">
+              <PropertyRef Name="Depart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeacherRewardModelStoreContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherCrosswiseTaskInfo" EntityType="Self.TeacherCrosswiseTaskInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherInfo" EntityType="Self.TeacherInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherPrizeInfo" EntityType="Self.TeacherPrizeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherProjectInfo" EntityType="Self.TeacherProjectInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherPublishThesisInfo" EntityType="Self.TeacherPublishThesisInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherScore" EntityType="Self.TeacherScore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherTaskInfo" EntityType="Self.TeacherTaskInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherTeachThesisInfo" EntityType="Self.TeacherTeachThesisInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TeacherInfo_TeacherInfo" Association="Self.FK_TeacherInfo_TeacherInfo">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="TeacherInfo" EntitySet="TeacherInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherScore_Department" Association="Self.FK_TeacherScore_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="TeacherScore" EntitySet="TeacherScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Department" Association="Self.FK_Users_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeacherRewardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TeacherInfo" Relationship="Self.FK_TeacherInfo_TeacherInfo" FromRole="Department" ToRole="TeacherInfo" />
+          <NavigationProperty Name="TeacherScore" Relationship="Self.FK_TeacherScore_Department" FromRole="Department" ToRole="TeacherScore" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Department" FromRole="Department" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TeacherCrosswiseTaskInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CTaskName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CTaskLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CTaskStartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CTaskEndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Depart" Type="Int32" Nullable="false" />
+          <Property Name="ShiDe" Type="Int32" Nullable="false" />
+          <Property Name="baseTeachingTime" Type="Int32" Nullable="false" />
+          <Property Name="extTeachingTime" Type="Int32" Nullable="false" />
+          <Property Name="BossScore" Type="Int32" Nullable="false" />
+          <Property Name="SuperScore" Type="Int32" Nullable="false" />
+          <Property Name="StuScore" Type="Int32" Nullable="false" />
+          <Property Name="DutyTime" Type="Int32" Nullable="false" />
+          <Property Name="Prize" Type="Int32" Nullable="false" />
+          <Property Name="baseProject" Type="Double" Nullable="false" />
+          <Property Name="extProject" Type="Double" Nullable="false" />
+          <Property Name="baseTeachThesis" Type="Int32" Nullable="false" />
+          <Property Name="extTeachThesis" Type="Int32" Nullable="false" />
+          <Property Name="TeachingAward" Type="Int32" Nullable="false" />
+          <Property Name="basePublishThesis" Type="Double" Nullable="false" />
+          <Property Name="extPublishThesis" Type="Double" Nullable="false" />
+          <Property Name="baseTask" Type="Double" Nullable="false" />
+          <Property Name="extTask" Type="Double" Nullable="false" />
+          <Property Name="CrosswiseTask" Type="Double" Nullable="false" />
+          <Property Name="Showup" Type="Int32" Nullable="false" />
+          <Property Name="DepartWorks" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_TeacherInfo_TeacherInfo" FromRole="TeacherInfo" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="TeacherPrizeInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prize1Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize1Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize1Rank" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize2Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize2Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize2Rank" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize3Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize3Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize3Rank" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize4Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize4Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prize4Rank" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherProjectInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Project1Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project1Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project1StartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project1EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project1Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project2Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project2Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project2StartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project2EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project2Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project3Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project3Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project3StartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Projectk3EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project3Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project4Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project4Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project4StartTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project4EndTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project4Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherPublishThesisInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PublishThesis1Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis1Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis1Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis2Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis2Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis2Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis3Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis3Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis3Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis4Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis4Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishThesis4Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherScore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Depart" Type="Int32" Nullable="false" />
+          <Property Name="KPIScore" Type="Double" Nullable="false" />
+          <Property Name="CPIScore" Type="Double" Nullable="false" />
+          <Property Name="FinalScore" Type="Double" Nullable="false" />
+          <Property Name="isSelected" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_TeacherScore_Department" FromRole="TeacherScore" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="TeacherTaskInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Task1Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task1StartTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task1EndTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task1Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task1Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task2Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task2StartTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task2EndTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task2Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task2Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task3Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task3StartTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task3EndTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task3Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task3Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task4Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task4StartTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task4EndTime" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task4Level" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Task4Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherTeachThesisInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TeachThesis1Type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis1Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis1Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis2Type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis2Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis2Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis3Type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis3Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis3Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis4Type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis4Author" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeachThesis4Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Department1" Relationship="Self.FK_Users_Department" FromRole="Users" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK_TeacherInfo_TeacherInfo">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="TeacherInfo" Type="Self.TeacherInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherInfo">
+              <PropertyRef Name="Depart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherScore_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="TeacherScore" Type="Self.TeacherScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherScore">
+              <PropertyRef Name="Depart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeacherRewardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="TeacherCrosswiseTaskInfo" EntityType="Self.TeacherCrosswiseTaskInfo" />
+          <EntitySet Name="TeacherInfo" EntityType="Self.TeacherInfo" />
+          <EntitySet Name="TeacherPrizeInfo" EntityType="Self.TeacherPrizeInfo" />
+          <EntitySet Name="TeacherProjectInfo" EntityType="Self.TeacherProjectInfo" />
+          <EntitySet Name="TeacherPublishThesisInfo" EntityType="Self.TeacherPublishThesisInfo" />
+          <EntitySet Name="TeacherScore" EntityType="Self.TeacherScore" />
+          <EntitySet Name="TeacherTaskInfo" EntityType="Self.TeacherTaskInfo" />
+          <EntitySet Name="TeacherTeachThesisInfo" EntityType="Self.TeacherTeachThesisInfo" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_TeacherInfo_TeacherInfo" Association="Self.FK_TeacherInfo_TeacherInfo">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="TeacherInfo" EntitySet="TeacherInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherScore_Department" Association="Self.FK_TeacherScore_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="TeacherScore" EntitySet="TeacherScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Department" Association="Self.FK_Users_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeacherRewardModelStoreContainer" CdmEntityContainer="TeacherRewardEntities">
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="TeacherRewardModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherCrosswiseTaskInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherCrosswiseTaskInfo">
+              <MappingFragment StoreEntitySet="TeacherCrosswiseTaskInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CTaskName" ColumnName="CTaskName" />
+                <ScalarProperty Name="CTaskLevel" ColumnName="CTaskLevel" />
+                <ScalarProperty Name="CTaskStartTime" ColumnName="CTaskStartTime" />
+                <ScalarProperty Name="CTaskEndTime" ColumnName="CTaskEndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherInfo">
+              <MappingFragment StoreEntitySet="TeacherInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="ShiDe" ColumnName="ShiDe" />
+                <ScalarProperty Name="baseTeachingTime" ColumnName="baseTeachingTime" />
+                <ScalarProperty Name="extTeachingTime" ColumnName="extTeachingTime" />
+                <ScalarProperty Name="BossScore" ColumnName="BossScore" />
+                <ScalarProperty Name="SuperScore" ColumnName="SuperScore" />
+                <ScalarProperty Name="StuScore" ColumnName="StuScore" />
+                <ScalarProperty Name="DutyTime" ColumnName="DutyTime" />
+                <ScalarProperty Name="Prize" ColumnName="Prize" />
+                <ScalarProperty Name="baseProject" ColumnName="baseProject" />
+                <ScalarProperty Name="extProject" ColumnName="extProject" />
+                <ScalarProperty Name="baseTeachThesis" ColumnName="baseTeachThesis" />
+                <ScalarProperty Name="extTeachThesis" ColumnName="extTeachThesis" />
+                <ScalarProperty Name="TeachingAward" ColumnName="TeachingAward" />
+                <ScalarProperty Name="basePublishThesis" ColumnName="basePublishThesis" />
+                <ScalarProperty Name="extPublishThesis" ColumnName="extPublishThesis" />
+                <ScalarProperty Name="baseTask" ColumnName="baseTask" />
+                <ScalarProperty Name="extTask" ColumnName="extTask" />
+                <ScalarProperty Name="CrosswiseTask" ColumnName="CrosswiseTask" />
+                <ScalarProperty Name="Showup" ColumnName="Showup" />
+                <ScalarProperty Name="DepartWorks" ColumnName="DepartWorks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherPrizeInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherPrizeInfo">
+              <MappingFragment StoreEntitySet="TeacherPrizeInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Prize1Name" ColumnName="Prize1Name" />
+                <ScalarProperty Name="Prize1Level" ColumnName="Prize1Level" />
+                <ScalarProperty Name="Prize1Rank" ColumnName="Prize1Rank" />
+                <ScalarProperty Name="Prize2Name" ColumnName="Prize2Name" />
+                <ScalarProperty Name="Prize2Level" ColumnName="Prize2Level" />
+                <ScalarProperty Name="Prize2Rank" ColumnName="Prize2Rank" />
+                <ScalarProperty Name="Prize3Name" ColumnName="Prize3Name" />
+                <ScalarProperty Name="Prize3Level" ColumnName="Prize3Level" />
+                <ScalarProperty Name="Prize3Rank" ColumnName="Prize3Rank" />
+                <ScalarProperty Name="Prize4Name" ColumnName="Prize4Name" />
+                <ScalarProperty Name="Prize4Level" ColumnName="Prize4Level" />
+                <ScalarProperty Name="Prize4Rank" ColumnName="Prize4Rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherProjectInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherProjectInfo">
+              <MappingFragment StoreEntitySet="TeacherProjectInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Project1Name" ColumnName="Project1Name" />
+                <ScalarProperty Name="Project1Level" ColumnName="Project1Level" />
+                <ScalarProperty Name="Project1StartTime" ColumnName="Project1StartTime" />
+                <ScalarProperty Name="Project1EndTime" ColumnName="Project1EndTime" />
+                <ScalarProperty Name="Project1Role" ColumnName="Project1Role" />
+                <ScalarProperty Name="Project2Name" ColumnName="Project2Name" />
+                <ScalarProperty Name="Project2Level" ColumnName="Project2Level" />
+                <ScalarProperty Name="Project2StartTime" ColumnName="Project2StartTime" />
+                <ScalarProperty Name="Project2EndTime" ColumnName="Project2EndTime" />
+                <ScalarProperty Name="Project2Role" ColumnName="Project2Role" />
+                <ScalarProperty Name="Project3Name" ColumnName="Project3Name" />
+                <ScalarProperty Name="Project3Level" ColumnName="Project3Level" />
+                <ScalarProperty Name="Project3StartTime" ColumnName="Project3StartTime" />
+                <ScalarProperty Name="Projectk3EndTime" ColumnName="Projectk3EndTime" />
+                <ScalarProperty Name="Project3Role" ColumnName="Project3Role" />
+                <ScalarProperty Name="Project4Name" ColumnName="Project4Name" />
+                <ScalarProperty Name="Project4Level" ColumnName="Project4Level" />
+                <ScalarProperty Name="Project4StartTime" ColumnName="Project4StartTime" />
+                <ScalarProperty Name="Project4EndTime" ColumnName="Project4EndTime" />
+                <ScalarProperty Name="Project4Role" ColumnName="Project4Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherPublishThesisInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherPublishThesisInfo">
+              <MappingFragment StoreEntitySet="TeacherPublishThesisInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PublishThesis1Type" ColumnName="PublishThesis1Type" />
+                <ScalarProperty Name="PublishThesis1Author" ColumnName="PublishThesis1Author" />
+                <ScalarProperty Name="PublishThesis1Name" ColumnName="PublishThesis1Name" />
+                <ScalarProperty Name="PublishThesis2Type" ColumnName="PublishThesis2Type" />
+                <ScalarProperty Name="PublishThesis2Author" ColumnName="PublishThesis2Author" />
+                <ScalarProperty Name="PublishThesis2Name" ColumnName="PublishThesis2Name" />
+                <ScalarProperty Name="PublishThesis3Type" ColumnName="PublishThesis3Type" />
+                <ScalarProperty Name="PublishThesis3Author" ColumnName="PublishThesis3Author" />
+                <ScalarProperty Name="PublishThesis3Name" ColumnName="PublishThesis3Name" />
+                <ScalarProperty Name="PublishThesis4Type" ColumnName="PublishThesis4Type" />
+                <ScalarProperty Name="PublishThesis4Author" ColumnName="PublishThesis4Author" />
+                <ScalarProperty Name="PublishThesis4Name" ColumnName="PublishThesis4Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherScore">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherScore">
+              <MappingFragment StoreEntitySet="TeacherScore">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="KPIScore" ColumnName="KPIScore" />
+                <ScalarProperty Name="CPIScore" ColumnName="CPIScore" />
+                <ScalarProperty Name="FinalScore" ColumnName="FinalScore" />
+                <ScalarProperty Name="isSelected" ColumnName="isSelected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherTaskInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherTaskInfo">
+              <MappingFragment StoreEntitySet="TeacherTaskInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Task1Name" ColumnName="Task1Name" />
+                <ScalarProperty Name="Task1StartTime" ColumnName="Task1StartTime" />
+                <ScalarProperty Name="Task1EndTime" ColumnName="Task1EndTime" />
+                <ScalarProperty Name="Task1Level" ColumnName="Task1Level" />
+                <ScalarProperty Name="Task1Role" ColumnName="Task1Role" />
+                <ScalarProperty Name="Task2Name" ColumnName="Task2Name" />
+                <ScalarProperty Name="Task2StartTime" ColumnName="Task2StartTime" />
+                <ScalarProperty Name="Task2EndTime" ColumnName="Task2EndTime" />
+                <ScalarProperty Name="Task2Level" ColumnName="Task2Level" />
+                <ScalarProperty Name="Task2Role" ColumnName="Task2Role" />
+                <ScalarProperty Name="Task3Name" ColumnName="Task3Name" />
+                <ScalarProperty Name="Task3StartTime" ColumnName="Task3StartTime" />
+                <ScalarProperty Name="Task3EndTime" ColumnName="Task3EndTime" />
+                <ScalarProperty Name="Task3Level" ColumnName="Task3Level" />
+                <ScalarProperty Name="Task3Role" ColumnName="Task3Role" />
+                <ScalarProperty Name="Task4Name" ColumnName="Task4Name" />
+                <ScalarProperty Name="Task4StartTime" ColumnName="Task4StartTime" />
+                <ScalarProperty Name="Task4EndTime" ColumnName="Task4EndTime" />
+                <ScalarProperty Name="Task4Level" ColumnName="Task4Level" />
+                <ScalarProperty Name="Task4Role" ColumnName="Task4Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherTeachThesisInfo">
+            <EntityTypeMapping TypeName="TeacherRewardModel.TeacherTeachThesisInfo">
+              <MappingFragment StoreEntitySet="TeacherTeachThesisInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TeachThesis1Type" ColumnName="TeachThesis1Type" />
+                <ScalarProperty Name="TeachThesis1Author" ColumnName="TeachThesis1Author" />
+                <ScalarProperty Name="TeachThesis1Name" ColumnName="TeachThesis1Name" />
+                <ScalarProperty Name="TeachThesis2Type" ColumnName="TeachThesis2Type" />
+                <ScalarProperty Name="TeachThesis2Author" ColumnName="TeachThesis2Author" />
+                <ScalarProperty Name="TeachThesis2Name" ColumnName="TeachThesis2Name" />
+                <ScalarProperty Name="TeachThesis3Type" ColumnName="TeachThesis3Type" />
+                <ScalarProperty Name="TeachThesis3Author" ColumnName="TeachThesis3Author" />
+                <ScalarProperty Name="TeachThesis3Name" ColumnName="TeachThesis3Name" />
+                <ScalarProperty Name="TeachThesis4Type" ColumnName="TeachThesis4Type" />
+                <ScalarProperty Name="TeachThesis4Author" ColumnName="TeachThesis4Author" />
+                <ScalarProperty Name="TeachThesis4Name" ColumnName="TeachThesis4Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TeacherRewardModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

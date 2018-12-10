@@ -1,0 +1,448 @@
+﻿@model TeacherReward.Models.AllInfo
+@{
+	ViewBag.Title = "查看详情";
+	Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>查看详情</h2>
+
+<h3 style="text-align:center">教师信息</h3>
+<table class="table" style="text-align:center">
+	<tr>
+		<td>
+			<label style="font-size:large">编号：</label>
+			@Model.TInfo.ID
+		</td>
+		<td>
+			<label style="font-size:large">姓名：</label>
+			@Model.TInfo.Name
+		</td>
+		<td>
+			<label style="font-size:large">系别：</label>
+			@ViewBag.Department[Model.TInfo.Depart]
+		</td>
+	</tr>
+</table>
+
+<h3 style="text-align:center">客观评分</h3>
+<table class="table table-striped" style="text-align:center">
+	<tr>
+		<td>
+			<label style="font-size:large">师德建设：(共10分)</label>
+			<div>@Model.TInfo.ShiDe 分</div>
+		</td>
+		<td>
+			<label style="font-size:large">评价和出勤：(共15分)</label>
+			<div>
+				<label>领导评分(40%)：</label>
+				@Model.TInfo.BossScore 分&nbsp;&nbsp;&nbsp;
+				<label>督导评分(30%)：</label>
+				@Model.TInfo.SuperScore 分
+			</div>
+			<div>
+				<label>学生评分(30%)：</label>
+				@Model.TInfo.StuScore 分&nbsp;&nbsp;&nbsp;
+				<label>出勤分：</label>
+				@Model.TInfo.DutyTime 分
+			</div>
+		</td>
+		<td>
+			<label style="font-size:large">出勤：(共4分)</label>
+			<div>
+				@Model.TInfo.Showup 分
+			</div>
+		</td>
+		<td>
+			<label style="font-size:large">完成系部其他工作：(共6分)</label>
+			<div>
+				@Model.TInfo.DepartWorks 分
+			</div>
+		</td>
+	</tr>
+</table>
+
+<h3 style="text-align:center">KPI分数</h3>
+<table class="table table-striped" style="text-align:center">
+	<tr>
+		<td>
+			<label style="font-size:large">本年度总课时量（学时）：(共40分)</label>
+			<div>
+				<label>基本得分：</label>
+				@Model.TInfo.baseTeachingTime 分
+			</div>
+			<div>
+				<label>超工作量得分：</label>
+				@Model.TInfo.extTeachingTime 单位 &nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">每超1学时的分数 = 3/全系教师中超工作量最大值</label>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label style="font-size:large">指导竞赛获奖情况：(共5分)</label>
+			<div>
+				@Model.TInfo.Prize 单位&nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">单位分值 = 5/个人最高获奖单位数</label>
+			</div>
+			<table class="table table-condensed">
+				<tr>
+					<th style="text-align:center">获奖名称</th>
+					<th style="text-align:center">级别</th>
+					<th style="text-align:center">名次</th>
+					<th style="text-align:center">备注</th>
+				</tr>
+				@if (Model.TPrize != null && Model.TPrize.Prize1Level != "无" && Model.TPrize.Prize1Rank != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TPrize.Prize1Level</td>
+						<td style="text-align:center">@Model.TPrize.Prize1Rank</td>
+						<td style="text-align:center">@Model.TPrize.Prize1Name</td>
+						<td style="text-align:center">@Model.TPrize.Prize1Comment</td>
+					</tr>
+				}
+				@if (Model.TPrize != null && Model.TPrize.Prize2Level != "无" && Model.TPrize.Prize2Rank != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TPrize.Prize2Level</td>
+						<td style="text-align:center">@Model.TPrize.Prize2Rank</td>
+						<td style="text-align:center">@Model.TPrize.Prize2Name</td>
+						<td style="text-align:center">@Model.TPrize.Prize2Comment</td>
+					</tr>
+				}
+				@if (Model.TPrize != null && Model.TPrize.Prize3Level != "无" && Model.TPrize.Prize3Rank != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TPrize.Prize3Level</td>
+						<td style="text-align:center">@Model.TPrize.Prize3Rank</td>
+						<td style="text-align:center">@Model.TPrize.Prize3Name</td>
+						<td style="text-align:center">@Model.TPrize.Prize3Comment</td>
+					</tr>
+				}
+				@if (Model.TPrize != null && Model.TPrize.Prize4Level != "无" && Model.TPrize.Prize4Rank != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TPrize.Prize4Level</td>
+						<td style="text-align:center">@Model.TPrize.Prize4Rank</td>
+						<td style="text-align:center">@Model.TPrize.Prize4Name</td>
+						<td style="text-align:center">@Model.TPrize.Prize4Comment</td>
+					</tr>
+				}
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label style="font-size:large">教学改革与研究项目：(共10分)</label>
+			<div>
+				<label>基本得分：</label>
+				@Model.TInfo.baseProject 单位&nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">本项分值 = 单位数*4/3</label>
+			</div>
+			<div>
+				<label>超工作量得分：</label>
+				@Model.TInfo.extProject 单位&nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">单位分值 = 3/个人最高超项目单位数</label>
+			</div>
+			<table class="table table-condensed">
+				<tr>
+					<th style="text-align:center">名称</th>
+					<th style="text-align:center">级别</th>
+					<th style="text-align:center">开始时间</th>
+					<th style="text-align:center">结束时间</th>
+					<th style="text-align:center">参与人顺位</th>
+					<th style="text-align:center">备注</th>
+				</tr>
+				@if (Model.TProject != null && Model.TProject.Project1Role != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TProject.Project1Name</td>
+						<td style="text-align:center">@Model.TProject.Project1Level</td>
+						<td style="text-align:center">@Model.TProject.Project1StartTime</td>
+						<td style="text-align:center">@Model.TProject.Project1EndTime</td>
+						<td style="text-align:center">@Model.TProject.Project1Role</td>
+						<td style="text-align:center">@Model.TProject.Project1Comment</td>
+					</tr>
+				}
+				@if (Model.TProject != null && Model.TProject.Project2Role != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TProject.Project2Name</td>
+						<td style="text-align:center">@Model.TProject.Project2Level</td>
+						<td style="text-align:center">@Model.TProject.Project2StartTime</td>
+						<td style="text-align:center">@Model.TProject.Project2EndTime</td>
+						<td style="text-align:center">@Model.TProject.Project2Role</td>
+						<td style="text-align:center">@Model.TProject.Project2Comment</td>
+					</tr>
+				}
+				@if (Model.TProject != null && Model.TProject.Project3Role != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TProject.Project3Name</td>
+						<td style="text-align:center">@Model.TProject.Project3Level</td>
+						<td style="text-align:center">@Model.TProject.Project3StartTime</td>
+						<td style="text-align:center">@Model.TProject.Project3EndTime</td>
+						<td style="text-align:center">@Model.TProject.Project3Role</td>
+						<td style="text-align:center">@Model.TProject.Project3Comment</td>
+					</tr>
+				}
+				@if (Model.TProject != null && Model.TProject.Project4Role != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TProject.Project4Name</td>
+						<td style="text-align:center">@Model.TProject.Project4Level</td>
+						<td style="text-align:center">@Model.TProject.Project4StartTime</td>
+						<td style="text-align:center">@Model.TProject.Project4EndTime</td>
+						<td style="text-align:center">@Model.TProject.Project4Role</td>
+						<td style="text-align:center">@Model.TProject.Project4Comment</td>
+					</tr>
+				}
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label style="font-size:large">教学论文/教材：(共2分)</label>
+			<div>
+				<label>基本得分：</label>
+				@Model.TInfo.baseTeachThesis 分
+			</div>
+			<div>
+				<label>超工作量得分：</label>
+				@Model.TInfo.extTeachThesis 单位&nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">单位分值 = 1/个人最高超项目单位数</label>
+			</div>
+			<table class="table table-condensed">
+				<tr>
+					<th style="text-align:center">名称</th>
+					<th style="text-align:center">期刊/出版社</th>
+					<th style="text-align:center">类型</th>
+					<th style="text-align:center">作者</th>
+					<th style="text-align:center">备注</th>
+				</tr>
+				@if (Model.TTThesis != null && Model.TTThesis.TeachThesis1Author != "无" && Model.TTThesis.TeachThesis1Author != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis1Name</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis1Publisher</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis1Type</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis1Author</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis1Comment</td>
+					</tr>
+				}
+				@if (Model.TTThesis != null && Model.TTThesis.TeachThesis2Author != "无" && Model.TTThesis.TeachThesis2Author != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis2Name</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis2Publisher</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis2Type</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis2Author</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis2Comment</td>
+					</tr>
+				}
+				@if (Model.TTThesis != null && Model.TTThesis.TeachThesis3Author != "无" && Model.TTThesis.TeachThesis3Author != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis3Name</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis3Publisher</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis3Type</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis3Author</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis3Comment</td>
+					</tr>
+				}
+				@if (Model.TTThesis != null && Model.TTThesis.TeachThesis4Author != "无" && Model.TTThesis.TeachThesis4Author != "无") {
+					<tr>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis4Name</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis4Publisher</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis4Type</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis4Author</td>
+						<td style="text-align:center">@Model.TTThesis.TeachThesis4Comment</td>
+					</tr>
+				}
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label style="font-size:large">教学成果奖或优秀教材奖：(共1分)</label>
+			<div>
+				@Model.TInfo.TeachingAward 分&nbsp;&nbsp;&nbsp;
+				<label style="font-size:small;color:brown">有奖则有一分</label>&nbsp;&nbsp;&nbsp;
+				备注：@if (Model.TAward != null) {
+					@Model.TAward.Comment
+				} else {
+					<label>无</label>
+				}
+			</div>
+		</td>
+	</tr>
+</table>
+
+<h3 style="text-align:center">CPI分数</h3>
+<table class="table table-striped" style="text-align:center">
+		<tr>
+			<td>
+				<label style="font-size:large">发表论文：(共5分)</label>
+				@*<div>
+					<label>基本得分：</label>
+					@Model.basePublishThesis 分
+				</div>*@
+				<div>
+					@*<label>超工作量得分：</label>*@
+					@Model.TInfo.extPublishThesis 单位&nbsp;&nbsp;&nbsp;
+					<label style="font-size:small;color:brown">单位分值 = 5/个人最高单位数</label>
+				</div>
+				<table class="table table-condensed">
+					<tr>
+						<th style="text-align:center">名称</th>
+						<th style="text-align:center">类型</th>
+						<th style="text-align:center">作者顺位</th>
+						<th style="text-align:center">发表时间</th>
+						<th style="text-align:center">备注</th>
+					</tr>
+					@if (Model.TPThesis != null && Model.TPThesis.PublishThesis1Type != "无" && Model.TPThesis.PublishThesis1Author != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis1Name</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis1Type</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis1Author</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis1Time</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis1Comment</td>
+						</tr>
+					}
+					@if (Model.TPThesis != null && Model.TPThesis.PublishThesis2Type != "无" && Model.TPThesis.PublishThesis2Author != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis2Name</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis2Type</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis2Author</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis2Time</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis2Comment</td>
+						</tr>
+					}
+					@if (Model.TPThesis != null && Model.TPThesis.PublishThesis3Type != "无" && Model.TPThesis.PublishThesis3Author != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis3Name</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis3Type</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis3Author</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis3Time</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis3Comment</td>
+						</tr>
+					}
+					@if (Model.TPThesis != null && Model.TPThesis.PublishThesis4Type != "无" && Model.TPThesis.PublishThesis4Author != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis4Name</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis4Type</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis4Author</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis4Time</td>
+							<td style="text-align:center">@Model.TPThesis.PublishThesis4Comment</td>
+						</tr>
+					}
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label style="font-size:large">纵向课题：(共3分)</label>
+				@*<div>
+					<label>基本得分：</label>
+					@Model.baseTask 分
+				</div>*@
+				<div>
+					@*<label>超工作量得分：</label>*@
+					@Model.TInfo.extTask 单位&nbsp;&nbsp;&nbsp;
+					<label style="font-size:small;color:brown">单位分值 = 3/个人最高单位数</label>
+				</div>
+				<table class="table table-condensed">
+					<tr>
+						<th style="text-align:center">名称</th>
+						<th style="text-align:center">级别</th>
+						<th style="text-align:center">开始时间</th>
+						<th style="text-align:center">结束时间</th>
+						<th style="text-align:center">参与人顺位</th>
+						<th style="text-align:center">备注</th>
+					</tr>
+					@if (Model.TTask != null && Model.TTask.Task1Role != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TTask.Task1Name</td>
+							<td style="text-align:center">@Model.TTask.Task1Level</td>
+							<td style="text-align:center">@Model.TTask.Task1StartTime</td>
+							<td style="text-align:center">@Model.TTask.Task1EndTime</td>
+							<td style="text-align:center">@Model.TTask.Task1Role</td>
+							<td style="text-align:center">@Model.TTask.Task1Comment</td>
+						</tr>
+					}
+					@if (Model.TTask != null && Model.TTask.Task2Role != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TTask.Task2Name</td>
+							<td style="text-align:center">@Model.TTask.Task2Level</td>
+							<td style="text-align:center">@Model.TTask.Task2StartTime</td>
+							<td style="text-align:center">@Model.TTask.Task2EndTime</td>
+							<td style="text-align:center">@Model.TTask.Task2Role</td>
+							<td style="text-align:center">@Model.TTask.Task2Comment</td>
+						</tr>
+					}
+					@if (Model.TTask != null && Model.TTask.Task3Role != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TTask.Task3Name</td>
+							<td style="text-align:center">@Model.TTask.Task3Level</td>
+							<td style="text-align:center">@Model.TTask.Task3StartTime</td>
+							<td style="text-align:center">@Model.TTask.Task3EndTime</td>
+							<td style="text-align:center">@Model.TTask.Task3Role</td>
+							<td style="text-align:center">@Model.TTask.Task3Comment</td>
+						</tr>
+					}
+					@if (Model.TTask != null && Model.TTask.Task4Role != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TTask.Task4Name</td>
+							<td style="text-align:center">@Model.TTask.Task4Level</td>
+							<td style="text-align:center">@Model.TTask.Task4StartTime</td>
+							<td style="text-align:center">@Model.TTask.Task4EndTime</td>
+							<td style="text-align:center">@Model.TTask.Task4Role</td>
+							<td style="text-align:center">@Model.TTask.Task4Comment</td>
+						</tr>
+					}
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label style="font-size:large">横向课题：(共2分)</label>
+				<div>
+					@Model.TInfo.CrosswiseTask 分
+				</div>
+				<table class="table table-condensed">
+					<tr>
+						<th style="text-align:center">名称</th>
+						<th style="text-align:center">级别</th>
+						<th style="text-align:center">开始时间</th>
+						<th style="text-align:center">结束时间</th>
+						<th style="text-align:center">备注</th>
+					</tr>
+					@if (Model.TCTask != null && Model.TCTask.CTaskLevel != "无") {
+						<tr>
+							<td style="text-align:center">@Model.TCTask.CTaskName</td>
+							<td style="text-align:center">@Model.TCTask.CTaskLevel</td>
+							<td style="text-align:center">@Model.TCTask.CTaskStartTime</td>
+							<td style="text-align:center">@Model.TCTask.CTaskEndTime</td>
+							<td style="text-align:center">@Model.TCTask.CTaskComment</td>
+						</tr>
+					}
+				</table>
+			</td>
+		</tr>
+	</table>
+
+<h3 style="text-align:center">扣分项</h3>
+@if (Model.TDeduction != null) {
+<table class="table table-striped" style="text-align:center">
+	<tr>
+		<td>
+			<label style="font-size:large">教学督导评价</label>
+			<div>
+				@Model.TDeduction.Supervisior 分
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				备注：@Model.TDeduction.SuperComment
+			</div>
+		</td>
+		<td>
+			<label style="font-size:large">教学事故</label>
+			<div>
+				@Model.TDeduction.Accident 分
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				备注：@Model.TDeduction.AccidentComment
+			</div>
+		</td>
+	</tr>
+</table>
+} else {
+<div style="text-align:center">
+	<label style="font-size:large">无</label>
+</div>
+}

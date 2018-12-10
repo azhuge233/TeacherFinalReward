@@ -1,0 +1,46 @@
+﻿@model IQueryable<TeacherReward.Models.Users>
+@{
+    ViewBag.Title = "评选否决";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>评选否决</h2>
+<table class="table" style="text-align:center">
+	<tr>
+		<th style="text-align:center">编号</th>
+		<th style="text-align:center">姓名</th>
+		<th style="text-align:center">否决情况</th>
+		<th style="text-align:center">原因</th>
+		<th style="text-align:center">否决</th>
+	</tr>
+	@foreach (var each in Model) {
+		if (ViewBag.VetoDic.ContainsKey(each.ID)) {
+	<tr class="danger" >
+		<td>@each.ID</td>
+		<td>@each.Name</td>
+		<td>已否决</td>
+		<td>@ViewBag.VetoDic[each.ID]</td>
+		<td>
+			@using (Html.BeginForm("UnDoVeto", "Admin", FormMethod.Post)) {
+				<input type="hidden" name="ID" value="@each.ID" />
+				<input type="submit" class="btn btn-success" value="取消否决" />
+			}
+		</td>
+	</tr>
+		} else {
+	<tr>
+		<td>@each.ID</td>
+		<td>@each.Name</td>
+		<td>未否决</td>
+		<td>无</td>
+		<td>
+			@using (Html.BeginForm("DoVeto", "Admin", FormMethod.Get)) {
+				<input type="hidden" name="ID" value="@each.ID" />
+				<input type="submit" class="btn btn-danger" value="否决" />
+			}
+		</td>
+	</tr>
+		}
+	}
+</table>
+

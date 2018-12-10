@@ -1,0 +1,59 @@
+﻿@model TeacherReward.Models.Users
+@{
+    ViewBag.Title = "ChangePwd";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>更改密码</h2>
+
+<div class="table-responsive">
+    @using (Html.BeginForm("ChangePwd", "Admin", FormMethod.Post)) {
+        <table class="table" style="width:auto;text-align:left;margin:auto;">
+            <tr>
+                <td style="width:90px;">教师编号：</td>
+                @{
+                    string UserID = ViewBag.curUserID;
+                    <td>@Html.Label(UserID)</td>
+                }
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:90px;">姓名：</td>
+                @{
+                    string curName = ViewBag.curUserName;
+                    <td>@Html.Label(curName)</td>
+                }
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:90px;">原密码：</td>
+                <td style="width:190px;">@Html.TextBoxFor(model => model.Password, new { @type = "password", @class = "form-control input-sm" })</td>
+                <td>@Html.ValidationMessageFor(model => model.Password)</td>
+            <tr>
+                <td style="width:90px;">新密码：</td>
+                <td style="width:190px;">@Html.TextBoxFor(model => model.NewPassword, new { @type = "password", @class = "form-control input-sm" })</td>
+                <td>@Html.ValidationMessageFor(model => model.NewPassword)</td>
+            </tr>
+            <tr>
+                <td style="width:90px;">确认密码：</td>
+                <td style="width:190px;">@Html.TextBoxFor(model => model.ConfirmPassword, new { @type = "password", @class = "form-control input-sm" })</td>
+                <td>@Html.ValidationMessageFor(model => model.ConfirmPassword)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.ErrMsg)</label>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" name="name" value="确定" class="btn btn-primary" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    }
+</div>

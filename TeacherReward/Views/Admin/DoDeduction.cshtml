@@ -1,0 +1,49 @@
+﻿@model TeacherReward.Models.DeducViewModel
+@{
+    ViewBag.Title = "填写扣分信息";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>填写扣分信息</h2>
+
+<h3 style="text-align:center">教师信息</h3>
+<table class="table table-condensed" style="text-align:center;width:300px;margin:auto">
+	<tr>
+		<th style="text-align:center">编号</th>
+		<th style="text-align:center">姓名</th>
+	</tr>
+	<tr>
+		<td>@Model.user.ID</td>
+		<td>@Model.user.Name</td>
+	</tr>
+</table>
+
+<h3 style="text-align:center">扣分信息</h3>
+@using (Html.BeginForm("DoDeduction", "Admin", FormMethod.Post)) {
+<table class="table table-condensed" style="text-align:center;width:auto;margin:auto">
+	<tr>
+		<th style="text-align:center">类型</th>
+		<th style="text-align:center">分数</th>
+		<th style="text-align:center">备注</th>
+	</tr>
+	<tr>
+		<td>教学督导评价</td>
+		<td>@Html.TextBoxFor(Model => Model.deduction.Supervisior, new { @class = "form-control", @placeholder="扣分分数" })</td>
+		<td>@Html.ValidationMessageFor(Model => Model.deduction.Supervisior)</td>
+		<td>@Html.TextBoxFor(Model => Model.deduction.SuperComment, new { @class = "form-control", @placeholder = "备注" })</td>
+		<td>@Html.ValidationMessageFor(Model => Model.deduction.SuperComment)</td>
+	</tr>
+	<tr>
+		<td>教学事故</td>
+		<td>@Html.TextBoxFor(Model => Model.deduction.Accident, new { @class = "form-control", @placeholder = "扣分分数" })</td>
+		<td>@Html.ValidationMessageFor(Model => Model.deduction.Accident)</td>
+		<td>@Html.TextBoxFor(Model => Model.deduction.AccidentComment, new { @class = "form-control", @placeholder = "备注" })</td>
+		<td>@Html.ValidationMessageFor(Model => Model.deduction.AccidentComment)</td>
+	</tr>
+</table>
+<div style="text-align:center">
+	<input type="hidden" name="ID" value="@Model.user.ID" />
+	<input type="submit" class="btn btn-primary" />
+</div>
+}
+

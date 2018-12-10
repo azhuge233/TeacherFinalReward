@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "教师评分评审系统";
+    //Response.Write("<script>alert('" + Session["userID"].ToString() + Session["isAdmin"].ToString() + "');</script>");
+}
+<h2 style="text-align:center">说明</h2>
+
+@{
+    if (ViewBag.PWDChanged == false) {
+        @Html.Label("您尚未更改密码", new { @style = "color:red;" });
+    }
+}
+<li>初次登录建议更改密码。</li>
+<li>[提交信息]: 提交教师信息。系主任未计算总分之前，若想修改信息可以重新提交。</li>
+<li>[信息公示]: 查看所有教师提交信息的KPI、CPI、总分，以及每项得分。</li>
+<li>[更改密码]: 更改当前用户的密码。</li>
+<li>[你好，XX]: 查看自己的用户信息</li>
+<h4 style="text-align:center">目前系内情况</h4>
+<table class="table table-condensed">
+	<tr>
+		<th>最高超工作量</th>
+		<th>最高获奖单位数</th>
+		<th>最高超项目单位数</th>
+		<th>最高超发论文单位数</th>
+		<th>最高发论文单位数(CPI)</th>
+		<th>最高科学研究工作单位数(CPI)</th>
+	</tr>
+	<tr>
+			<td>@ViewBag.HighScore[0]</td>
+			<td>@ViewBag.HighScore[1]</td>
+			<td>@ViewBag.HighScore[2]</td>
+			<td>@ViewBag.HighScore[3]</td>
+			<td>@ViewBag.HighScore[4]</td>
+			<td>@ViewBag.HighScore[5]</td>
+	</tr>
+</table>
